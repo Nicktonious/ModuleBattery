@@ -37,13 +37,17 @@ class ClassBattery extends ClassSensor {
             yellow: {           
                 low:    20, 
                 high:   999, 
-                cbLow:  (ch, prev) => { Object.emit('battery-low'); }, 
+                cbLow:  (ch, prev) => { 
+                    Logger.Log(Logger.LogLevel.WARN, 'BATTERY LOW CHARGE');
+                    Object.emit('battery-low'); }, 
                 cbHigh: (ch, prev) => { } 
             },
             red: {             
                 low:    10, 
                 high:   9999, 
-                cbLow:  (ch, prev) => { Object.emit('battery-critical'); }, 
+                cbLow:  (ch, prev) => { 
+                    Logger.LogLevel.WARN('BATTERY CRITICAL CHARGE');
+                    Object.emit('battery-critical'); }, 
                 cbHigh: (ch, prev) => {}
             },
         });
